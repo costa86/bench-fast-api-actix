@@ -6,13 +6,8 @@ app = Flask(__name__)
 
 @app.route("/dresses")
 def read_dresses() -> list:
-    dresses = []
     with open("dress.csv", mode="r") as csv_file:
-        csv_reader = csv.DictReader(csv_file)
-        for row in csv_reader:
-            dresses.append(row)
-    return dresses
-
+        return [i for i in csv.DictReader(csv_file)]
 
 if __name__ == "__main__":
     app.run(port=8080)
